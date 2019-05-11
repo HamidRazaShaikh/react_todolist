@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import AlertDialog from './alert.js';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -33,6 +34,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 
 
+
 const styles = {
     buttons1:{
         marginLeft :200,
@@ -52,7 +54,7 @@ const styles = {
     input:{
         marginLeft : 100,
         marginTop : 50,
-        width : 1000,
+        width : 1000
 
     }
 
@@ -70,7 +72,8 @@ class MyTodos extends Component {
         mytodos : [],
         text : '',
         name : false,
-        value: 'recents'
+        value: 'recents',
+        dialogue : true
 
     }
 
@@ -79,10 +82,25 @@ class MyTodos extends Component {
     }
 
     handleAddTodo = ()=>{
-        var todos = this.state.mytodos;
-        todos.push(this.state.text);
-        this.setState({mytodos : todos, text : ""})
-        this.state.name = false
+        if (this.state.text === "" ){
+            return (
+              this. setState ({dialogue : false})
+
+            ) ;
+
+            }
+
+
+        else {
+            this. setState ({dialogue : true})
+            var todos = this.state.mytodos;
+            todos.push(this.state.text);
+            this.setState({mytodos: todos, text: ""})
+            this.state.name = false;
+        }
+
+
+
     }
 
 
@@ -121,6 +139,8 @@ class MyTodos extends Component {
     render(){
         return(
             <div>
+
+                <div>{this.state.dialogue === false ? <AlertDialog/> : this.handleAddTodo }</div>
                 <AppBar position="static">
                     <Toolbar>
 
@@ -141,11 +161,14 @@ class MyTodos extends Component {
                     onChange = {this.handleChangeText}
                     style = {styles.input}
 
+
+
                     />
 
 
+
                 <Button variant="contained" color="secondary" style = {styles.buttons2} onClick = {this.handleAddTodo}>
-                    {this.state.name==false ? "add": "save"}
+                    {this.state.name===false ? "add": "save"}
                 </Button>
 
 
@@ -173,6 +196,8 @@ class MyTodos extends Component {
                             </TableRow>)
                     })}
                 </TableBody>
+
+
 
 
 
