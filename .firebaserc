@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "react-to-do-5e22f",
-    "todolist": "react-to-do-5e22f"
+    "todolist": "react-to-do-5e22f",
+    "todoslist": "react-to-do-5e22f"
   }
 }

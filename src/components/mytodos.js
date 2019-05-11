@@ -171,7 +171,6 @@ class MyTodos extends Component {
                     {this.state.name===false ? "add": "save"}
                 </Button>
 
-
                 <TableBody>
                     {this.state.mytodos.map((v,i)=>{
                         return(
